@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "id": "3",
+      "name": "Ruben",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "image_url": "https://images.unsplash.com/photo-1584585696759-1df9872e1eca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHw0NDUxODV8fGVufDB8fHx8fA%3D%3D",
+      "price": 160.17
+    },
+    {
+      "id": "5",
+      "name": "Geordie",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "image_url": "https://images.unsplash.com/photo-1564379976409-79bd0786fff1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjB8NDQ1MTg1fHxlbnwwfHx8fHw%3D",
+      "price": 987.21
+    },
+    {
+      "id": "10",
+      "name": "Babb",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "image_url": "https://images.unsplash.com/photo-1560141343-966cb5212777?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mzd8NDQ1MTg1fHxlbnwwfHx8fHw%3D",
+      "price": 467.65
+    },
+    {
+      "id": "8",
+      "name": "Leshia",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "image_url": "https://images.unsplash.com/photo-1560155136-ca9fd0b25a4c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MzB8NDQ1MTg1fHxlbnwwfHx8fHw%3D",
+      "price": 297.95
+    }
+  ]
+}

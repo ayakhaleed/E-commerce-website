@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "ea89",
+      "username": "aya",
+      "email": "ayakhalid191@gmail.com",
+      "role": "user",
+      "password": "12",
+      "cPassword": "12"
+    }
+  ],
+  "admins": [
+    {
+      "id": "056f",
+      "username": "khalidmohamed",
+      "email": "aya.raheem27@gmail.com",
+      "password": "23",
+      "cPassword": "23",
+      "role": "admin"
+    }
+  ]
+}
