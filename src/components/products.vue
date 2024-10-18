@@ -87,13 +87,13 @@ export default {
     },
     methods: {
         getproducts() {
-            axios.get('http://localhost:3000/products')
-                .then(res => { this.products = res.data })
+            axios.get('https://prods-b3100-default-rtdb.firebaseio.com/products.json')
+                .then(res => { this.products = res.data; })
                 .catch(err => { console.log(err) });
         },
         ADDTOCART(product) {
             this.$store.dispatch('ADDTOCART');
-            axios.post("http://localhost:4000/products", {
+            axios.post("https://prods-b3100-default-rtdb.firebaseio.com/products.json", {
                 id: product.id,
                 name: product.name,
                 description: product.description,

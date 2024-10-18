@@ -29,7 +29,7 @@
             </form>
         </div>
         <button @click="$router.go(-1)" type="button" class="btn-close ms-5" aria-label="Close"></button>
-    </div>
+    </div>{{ this.$route.params.id }}
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
             console.log(this.role, this.$route.params.role);
             if (this.role == 'user' && this.$route.params.role == 'user') {
 
-                axios.put(`http://localhost:2000/users/${this.id}`,
+                axios.put(`https://prods-b3100-default-rtdb.firebaseio.com/users/users/${this.id}.json`,
                     {
                         id: this.id,
                         username: this.username,
@@ -70,7 +70,7 @@ export default {
                     .catch(err => console.log(err))
             }
             else if (this.role == 'admin' && this.$route.params.role == 'admin') {
-                axios.put(`http://localhost:2000/admins/${this.id}`,
+                axios.put(`https://prods-b3100-default-rtdb.firebaseio.com/users/admins/${this.id}.json`,
                     {
                         id: this.id,
                         username: this.username,
@@ -88,7 +88,7 @@ export default {
             }
             else {
                 if (this.role == 'user') {
-                    axios.delete(`http://localhost:2000/admins/${this.id}`)
+                    axios.delete(`https://prods-b3100-default-rtdb.firebaseio.com/users/admins/${this.id}.json`)
                         .then(response => {
                             console.log('admin deleted:', response.data);
 
@@ -97,7 +97,7 @@ export default {
                             console.error('There was an error deleting the product:', error);
                         });
 
-                    axios.post("http://localhost:2000/users", {
+                    axios.post("https://prods-b3100-default-rtdb.firebaseio.com/users/users.json", {
                         id: this.id,
                         username: this.username,
                         email: this.email,
@@ -112,7 +112,7 @@ export default {
                         .catch(err => console.log("thers is an error", err))
                 }
                 else if (this.role == 'admin') {
-                    axios.delete(`http://localhost:2000/users/${this.id}`)
+                    axios.delete(`https://prods-b3100-default-rtdb.firebaseio.com/users/users/${this.id}.json`)
                         .then(response => {
                             console.log('user deleted:', response.data);
 
@@ -121,7 +121,7 @@ export default {
                             console.error('There was an error deleting the product:', error);
                         });
 
-                    axios.post("http://localhost:2000/admins", {
+                    axios.post("https://prods-b3100-default-rtdb.firebaseio.com/users/admins.json", {
                         id: this.id,
                         username: this.username,
                         email: this.email,
@@ -140,7 +140,7 @@ export default {
         },
         getUserById() {
             if (this.role == 'user') {
-                axios.get(`http://localhost:2000/users/${this.id}`)
+                axios.get(`https://prods-b3100-default-rtdb.firebaseio.com/users/users/${this.id}.json`)
                     .then(res => {
                         this.id = res.data.id;
                         this.username = res.data.username;
@@ -151,7 +151,7 @@ export default {
                     }).catch(err => console.log(err))
             }
             else {
-                axios.get(`http://localhost:2000/admins/${this.id}`)
+                axios.get(`https://prods-b3100-default-rtdb.firebaseio.com/users/admins/${this.id}.json`)
                     .then(res => {
                         this.id = res.data.id;
                         this.username = res.data.username;

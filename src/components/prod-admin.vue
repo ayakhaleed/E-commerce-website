@@ -3,11 +3,10 @@
 
         <Navbar></Navbar>
         <button @click="Addnew()" class="rounded mb-5" style="font-size: 16px;font-family: Sofadi One;">
-            Add New
+            Add New Product
         </button>
         <h1 style="font-family: Sofadi One;">Products</h1>
-
-        <table id="products-table" v-if="products.length > 0" class="table table-bordered table-hover table-striped products-table bg-body-tertiary" >
+        <table id="products-table"  v-if="products.length > 0" class="table table-bordered table-hover table-striped products-table bg-body-tertiary" >
             
             <thead class="table-dark">
                 <tr>
@@ -39,7 +38,7 @@
                                 <line x1="14" y1="11" x2="14" y2="17"></line>
                             </svg>
                         </button><br>
-                        <button @click="upadateProd(product.id,product.role)" class="btn btn-primary btn-sm w-50 ">
+                        <button @click="updateProd(product.id)" class="btn btn-primary btn-sm w-50 ">
                             <i class="bi bi-pencil-square pe-2">Update</i> 
                         </button>
                     </td>
@@ -66,12 +65,12 @@ export default {
     },
     methods: {
         getproducts() {
-            axios.get('http://localhost:3000/products')
-                .then(res => { this.products = res.data })
+            axios.get('https://prods-b3100-default-rtdb.firebaseio.com/products.json')
+                .then(res => { this.products = Object.values(res.data) ;console.log(this.products) })
                 .catch(err => { console.log(err) });
         },
         deleteProd(id) {
-            axios.delete(`http://localhost:3000/products/${id}`)
+            axios.delete(`https://prods-b3100-default-rtdb.firebaseio.com/products/${id}.json`)
                 .then(response => {
                     console.log('product deleted:', response.data);
                     this.getproducts()
@@ -84,7 +83,7 @@ export default {
         Addnew() {
             this.$router.push("/Addprod");
         },
-        upadateProd(id) {
+        updateProd(id) {
             this.$router.push(`Addprod/${id}`);
         }
     },

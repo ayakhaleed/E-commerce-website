@@ -1,74 +1,59 @@
 <template>
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registration Form</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-
-    <body>
-
-
-        <div class="form-container" :class="{ 'dark-mode': isDarkMode }">
-            <div class="header">
-                <h2 style="width:100%">Create an Account</h2>
+    <div class="form-container" :class="{ 'dark-mode': isDarkMode }">
+        <div class="header">
+            <h2 style="width:100%">Create an Account</h2>
+        </div>
+        <form action="#" id="registration-form" @submit.prevent="handleSubmit">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" v-model.trim.lazy="formValues.userName" required>
             </div>
-            <form action="#" id="registration-form" @submit.prevent="handleSubmit">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" v-model.trim.lazy="formValues.userName" required>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" v-model.trim.lazy="formValues.email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" v-model.trim.lazy="formValues.password"
-                        required>
-                </div>
-                <div class="input-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password"
-                        v-model.trim.lazy="formValues.cPassword" required>
-                </div>
-                <div class="input-group">
-                    <label for="role">Role</label>
-                    <div class="role-options d-flex ">
-                        <div class="d-flex ms-5">
-                            <input type="radio" name="role" value="user" v-model="formValues.role" id="role1"
-                                class=" me-2">
-                            <label for="role1" class="me-5 ">User</label>
-                        </div>
-                        <div class="d-flex ms-5">
-                            <input type="radio" name="role" value="admin" v-model="formValues.role" id="role2"
-                                class=" me-2">
-                            <label for="role2">Admin</label>
-                        </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" v-model.trim.lazy="formValues.email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" v-model.trim.lazy="formValues.password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password"
+                    v-model.trim.lazy="formValues.cPassword" required>
+            </div>
+            <div class="input-group">
+                <label for="role">Role</label>
+                <div class="role-options d-flex ">
+                    <div class="d-flex ms-5">
+                        <input type="radio" name="role" value="user" v-model="formValues.role" id="role1" class=" me-2">
+                        <label for="role1" class="me-5 ">User</label>
+                    </div>
+                    <div class="d-flex ms-5">
+                        <input type="radio" name="role" value="admin" v-model="formValues.role" id="role2"
+                            class=" me-2">
+                        <label for="role2">Admin</label>
                     </div>
                 </div>
-                <div class="input-group terms" style="display:flex;">
-                    <input type="checkbox" id="terms" name="terms" value="terms" style="width:20px;" class="me-5"
-                        required>
-                    <label for="terms">I agree to the terms and conditions</label>
-                </div>
-                <button type="submit">Register</button>
-            </form>
-            <div class="text-center mt-4">
-                        <p>Already have an account? <RouterLink to="/login">Sign in here</RouterLink></p>
-                    </div> 
-
+            </div>
+            <div class="input-group terms" style="display:flex;">
+                <input type="checkbox" id="terms" name="terms" value="terms" style="width:20px;" class="me-5" required>
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div class="text-center mt-4">
+            <p>Already have an account? <RouterLink to="/login">Sign in here</RouterLink>
+            </p>
         </div>
-        <button class="rounded" id="dark-mode-toggle" @click="toggleDarkMode">{{ isDarkMode ? 'Light Mode' : 'Dark Mode'
-            }}</button>
+
+    </div>
+    <button class="rounded" id="dark-mode-toggle" @click="toggleDarkMode">{{ isDarkMode ? 'Light Mode' : 'Dark Mode'
+        }}</button>{{ this.formValues.role }}
 
 
-    </body>
 
-    </html>
+
+
 
 
 </template>
@@ -78,6 +63,7 @@
 // import userPage from './components/user-table.vue'
 // import adminPage from './components/admin-table.vue'
 import axios from 'axios';
+
 export default {
     name: 'signUp',
     components: {
@@ -104,12 +90,12 @@ export default {
     },
     methods: {
         getuser() {
-            axios.get('http://localhost:2000/users')
-                .then(res => { this.users = res.data })
-                .catch(err => { console.log(err) });
+            axios.get("https://prods-b3100-default-rtdb.firebaseio.com/users/users.json")
+                .then(res => { this.users = res.data; console.log(this.users, "users") })
+                .catch(err => { console.log(err,"anaaa") });
         },
         getadmin() {
-            axios.get('http://localhost:2000/admins')
+            axios.get("https://prods-b3100-default-rtdb.firebaseio.com/users/users.json")
                 .then(res => { this.admins = res.data })
                 .catch(err => { console.log(err) });
         },
@@ -127,19 +113,23 @@ export default {
                         return;
                     }
                 }
-                axios.post("http://localhost:2000/users", {
+                axios.post("https://prods-b3100-default-rtdb.firebaseio.com/users/users.json", {
                     username: this.formValues.userName,
                     email: this.formValues.email,
                     password: this.formValues.password,
                     cPassword: this.formValues.cPassword,
                     role: this.formValues.role,
-                }).then(res => { console.log(res) })
+                }).then(res => {
+                    console.log(res);
+                    this.$router.push("/products");
+                })
                     .catch(err => { console.log(err) });
-                this.$router.push("/products");
+
             }
 
             if (this.formValues.role == 'admin') {
 
+                console.log("fwwwwwwwwww");
                 for (var admin in this.admins) {
                     if (this.admins[admin].email === this.formValues.email) {
                         alert("this email already exist!")
@@ -152,8 +142,9 @@ export default {
                         return;
                     }
                 }
+
                 
-                axios.post("http://localhost:2000/admins", {
+                axios.post("https://prods-b3100-default-rtdb.firebaseio.com/users/admins.json", {
                     username: this.formValues.userName,
                     email: this.formValues.email,
                     password: this.formValues.password,
@@ -165,21 +156,21 @@ export default {
             }
 
 
-            let obj = {
-                userName: this.formValues.userName,
-                email: this.formValues.email,
-                role: this.formValues.role
-            }
+            // let obj = {
+            //     userName: this.formValues.userName,
+            //     email: this.formValues.email,
+            //     role: this.formValues.role
+            // }
 
-            if (this.formValues.role == 'user') {
+            // if (this.formValues.role == 'user') {
 
-                this.users.push(obj);
+            //     this.users.push(obj);
 
-            }
+            // }
 
-            else if (this.formValues.role == 'admin') {
-                this.admins.push(obj);
-            }
+            // else if (this.formValues.role == 'admin') {
+            //     this.admins.push(obj);
+            // }
 
             this.formValues.userName = ''; // Clear the input after submission
             this.formValues.email = ''; // Reset the selected role
@@ -193,23 +184,7 @@ export default {
             this.isDarkMode = !this.isDarkMode; // Toggle the dark mode state
         },
 
-        displayUsers() {
-            this.userBtnFlag = true
-            this.adminBtnFlag = false
-        },
-        displayAdmins() {
-            this.adminBtnFlag = true
-            this.userBtnFlag = false
-        },
-        handeldeleteuser(index) {
-
-            this.users.splice(index, 1);
-
-        },
-        handeldeleteadmin(index) {
-            this.admins.splice(index, 1);
-        }
-
+       
     },
     created() {
         this.getuser()
@@ -221,7 +196,7 @@ export default {
 
 </script>
 
-<style >
+<style>
 /* Base Styles */
 /* Base Styles */
 /* Base Styles */

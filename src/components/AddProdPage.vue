@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         AddNewPrd() {
-            axios.post("http://localhost:3000/products", {
+            axios.put(`https://prods-b3100-default-rtdb.firebaseio.com/products/${this.id}.json`, {
                 id: this.id,
                 name: this.name,
                 description: this.desc,
@@ -66,7 +66,7 @@ export default {
                 .catch(err => console.log("thers is an error", err))
         },
         EditPrdById() {
-            axios.put(`http://localhost:3000/products/${this.id_update}`,
+            axios.put(`https://prods-b3100-default-rtdb.firebaseio.com/products/${this.id_update}.json`,
                 {
                     id: this.id,
                     name: this.name,
@@ -82,7 +82,7 @@ export default {
                 .catch(err => console.log(err))
         },
         getPrdById() {
-            axios.get(`http://localhost:3000/products/${this.id_update}`)
+            axios.get(`https://prods-b3100-default-rtdb.firebaseio.com/${this.id_update}.json`)
                 .then(res => {
                     this.id = res.data.id;
                     this.name = res.data.name;

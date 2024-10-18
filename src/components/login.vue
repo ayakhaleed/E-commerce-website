@@ -57,12 +57,12 @@ export default {
     },
     methods: {
         getuser() {
-            axios.get('http://localhost:2000/users')
+            axios.get('https://prods-b3100-default-rtdb.firebaseio.com/users/users.json')
                 .then(res => { this.users = res.data })
                 .catch(err => { console.log(err) });
         },
         getadmin() {
-            axios.get('http://localhost:2000/admins')
+            axios.get('https://prods-b3100-default-rtdb.firebaseio.com/users/admins.json')
                 .then(res => { this.admins = res.data })
                 .catch(err => { console.log(err) });
         },
